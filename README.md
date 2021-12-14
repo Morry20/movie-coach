@@ -27,13 +27,20 @@
 コーチとして自分のスキルを他人に伝えたい、またそれを使って金銭を稼ぎたい時。
 
 ## 設計書
-UI flow <https://drive.google.com/file/d/16e9vrVnJmULgyt0-yYX8Uw6HA3Rf2mkp/view?usp=sharing>
-ワイヤーフレーム 会員側 <https://drive.google.com/file/d/18IUw57XheIZZSklquvxz11cqC03q2sdw/view?usp=sharing>
-ワイヤーフレーム コーチ側 <https://drive.google.com/file/d/1923n7TEc8k_37MjdXP5RX_ktziTjBeb-/view?usp=sharing>
-ER図 <https://drive.google.com/file/d/19g8ZUE6usIduX_gRE5TjQ8hZryf_1Hmm/view?usp=sharing>
-テーブル定義書 <https://docs.google.com/spreadsheets/d/147n9dio7mhr4dotE0W7KNPFklCU4drYTLHCyTQeyyjU/edit?usp=sharing>
-アプリケーション詳細設計書 <https://docs.google.com/spreadsheets/d/1GH6kCMYnVveiOzl6dp5j6LUZoHHkpqrQoINGac2ySrs/edit?usp=sharing>
-
+<dl>
+  <dt>UI flow</dt>
+  <dd><https://drive.google.com/file/d/16e9vrVnJmULgyt0-yYX8Uw6HA3Rf2mkp/view?usp=sharing></dd>
+  <dt>ワイヤーフレーム 会員側</dt>
+  <dd><https://drive.google.com/file/d/18IUw57XheIZZSklquvxz11cqC03q2sdw/view?usp=sharing></dd>
+  <dt>ワイヤーフレーム コーチ側</dt>
+  <dd><https://drive.google.com/file/d/1923n7TEc8k_37MjdXP5RX_ktziTjBeb-/view?usp=sharing></dd>
+  <dt>ER図</dt>
+  <dd><https://drive.google.com/file/d/19g8ZUE6usIduX_gRE5TjQ8hZryf_1Hmm/view?usp=sharing></dd>
+  <dt>テーブル定義書</dt>
+  <dd><https://docs.google.com/spreadsheets/d/147n9dio7mhr4dotE0W7KNPFklCU4drYTLHCyTQeyyjU/edit?usp=sharing></dd>
+  <dt>アプリケーション詳細設計書</dt>
+  <dd><https://docs.google.com/spreadsheets/d/1GH6kCMYnVveiOzl6dp5j6LUZoHHkpqrQoINGac2ySrs/edit?usp=sharing></dd>
+</dl>
 ## チャレンジ要素一覧
 <https://docs.google.com/spreadsheets/d/1E4Quehglf9PxM1XTE-ft2X5-hJ5dmoJhsI-UJlgzVmY/edit#gid=0>
 ## 開発環境
