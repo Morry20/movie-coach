@@ -1,15 +1,63 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MovieCoach</title>
+    <title>Movie-Coach</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand p-3" href="/">Movie-Coach</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+              <li class="nav-item">
+                <%#= link_to '商品一覧', admin_items_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
+              </li>
+              <li class="nav-item">
+                <%#= link_to '会員一覧', admin_customers_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
+              </li>
+              <li class="nav-item">
+                <%#= link_to '注文履歴一覧', admin_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
+              </li>
+              <li class="nav-item">
+                <%#= link_to 'ジャンル一覧', admin_genres_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
+              </li>
+              <li class="nav-item">
+                <%#= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    
+    <main class="mb-auto">
+      <div class ="container">
+        <%= yield %>
+      </div>
+
+    </main>
+    
+    <footer class="bg-cyan text-white pt-5 pb-4">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
