@@ -10,7 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_16_124436) do
+ActiveRecord::Schema.define(version: 2021_12_17_045143) do
+
+  create_table "coach_evaluations", force: :cascade do |t|
+    t.integer "matching_id", null: false
+    t.integer "evaluation", null: false
+    t.string "title", null: false
+    t.string "reason", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "coachings", force: :cascade do |t|
+    t.integer "movie_id", null: false
+    t.integer "evaluation", null: false
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "matchings", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "coach_id", null: false
+    t.integer "approval", default: 0, null: false
+    t.string "goal", null: false
+    t.string "how", null: false
+    t.string "comment", null: false
+    t.string "reply"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "matching_id", null: false
+    t.integer "user_id", null: false
+    t.string "message", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.integer "matching_id", null: false
+    t.string "movie_id", null: false
+    t.string "request", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "sports", force: :cascade do |t|
     t.string "image_id", null: false

@@ -1,0 +1,2 @@
+class CoachEvaluation < ApplicationRecord
+end
