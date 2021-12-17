@@ -1,0 +1,13 @@
+<div class="row m-3">
+  <span class="h3 bg-cyan col-6">スポーツ一覧</span>
+  <%# 検索機能 %>
+</div>
+
+<div class="row m-3">
+  <div><% @sports.each do |sport| %>
+    <ul class="col-3 d-inline-block list-inline">
+      <li><%= link_to attachment_image_tag(sport, :image , :fill, 150, 150, format: 'jpeg'), %></li><%# リンクを付与　%>
+      <li><%= sport.name %></li>
+    </ul><% end %><%#= paginate @sports %>
+  </div>
+</div> 
