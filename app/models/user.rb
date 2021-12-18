@@ -4,8 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-  has_one :sport
+  attachment :image
+         
+  #has_one :sport
   
-  has_many :matchings, :messages, :movies
+  has_many :matchings, dependent: :destroy
+  
+  has_many :messages, dependent: :destroy
+  
+  has_many :movies, dependent: :destroy
   
 end

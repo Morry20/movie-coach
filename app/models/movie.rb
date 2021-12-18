@@ -1,5 +1,7 @@
 class Movie < ApplicationRecord
-  has_one :coaching
+  has_one :coaching, dependent: :destroy
   
-  belongs_to :user, :matching
+  belongs_to :user
+  
+  belongs_to :matching
 end

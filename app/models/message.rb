@@ -1,3 +1,5 @@
 class Message < ApplicationRecord
-  belongs_to :user, :matching
+  belongs_to :user
+  
+  belongs_to :matching
 end
