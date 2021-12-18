@@ -54,9 +54,9 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-## 使用素材-
+## 使用素材
 
 後ほどフリーのスポーツの画像やプロフィール画像を利用予定
 
-- depositephotes
-- Unsplash
+- depositephotes<https://jp.depositphotos.com/?gclsrc=aw.ds&&utm_source=google&utm_medium=cpc&utm_campaign=DP_JPN_JA_Brand_Search&utm_term=depositphotos&gclid=Cj0KCQiAqvaNBhDLARIsAH1Pq53a3rDTBHCgkyCcy5ZUz-dS3CkUdEhfM-zRYFnPYgUyUHkxqEk-1cMaAjVTEALw_wcB>
+- Unsplash<https://unsplash.com/>
