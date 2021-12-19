@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
   
   def top
-#    @sports = Sport.all
+    #@sports = Sport.all
   end
   
 end

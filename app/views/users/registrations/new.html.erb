@@ -1,0 +1,69 @@
+<div class="row m-2">
+  <span class="h2 bg-light col-2 text-center">新規登録</span>
+  <p class="col-9">※パスワード以外、受講するコーチに公表されます</p>
+</div>
+
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label '名前' %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'プロフィール画像' %><br />
+    <%= f.attachment_field :image, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label '性別' %><br />
+    <%= f.radio_button :gender, User.genders.key(1) %>
+    <%= f.label :user, User.genders_i18n[:male] %>
+    <%= f.radio_button :gender, User.genders.key(2) %>
+    <%= f.label :user, User.genders_i18n[:female] %>
+  </div>
+
+  <div class="field">
+    <%= f.label '年齢' %><br />
+    <%= f.number_field :name, autofocus: true, min:0, max:100 %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'スポーツ' %><br />
+    <%= f.collection_select :sport_id, Sport.all, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label '自己紹介（スポーツの経歴やレベル、どのように習いたいかor教えたいか等。）' %><br />
+    <%= f.text_area :introduction, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'ユーザータイプ' %><br />
+    <%= f.radio_button :is_coach, false %>
+    <%= f.label :is_coach, "受講者", {value: false, style: "display: inline-block;"} %>
+    <%= f.radio_button :is_coach, true %>
+    <%= f.label :is_coach, "コーチ", {value: true, style: "display: inline-block;"} %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "新規登録" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>

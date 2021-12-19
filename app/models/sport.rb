@@ -1,7 +1,7 @@
 class Sport < ApplicationRecord
-  
+
   attachment :image
-  
-  #belongs_to :user
-  
+
+  has_one :user
+
 end
