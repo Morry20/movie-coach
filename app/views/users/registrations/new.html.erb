@@ -8,8 +8,8 @@
   <%= render "users/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label '名前' %><br />
-    <%= f.text_field :name, autofocus: true %>
+    <%= f.label 'メールアドレス' %><br />
+    <%= f.email_field :email, autofocus: true %>
   </div>
 
   <div class="field">
@@ -26,6 +26,11 @@
   </div>
 
   <div class="field">
+    <%= f.label '名前' %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label 'プロフィール画像' %><br />
     <%= f.attachment_field :image, autofocus: true %>
   </div>
@@ -33,14 +38,14 @@
   <div class="field">
     <%= f.label '性別' %><br />
     <%= f.radio_button :gender, User.genders.key(1) %>
-    <%= f.label :user, User.genders_i18n[:male] %>
+    <%= f.label :gender, User.genders_i18n[:male] %>
     <%= f.radio_button :gender, User.genders.key(2) %>
-    <%= f.label :user, User.genders_i18n[:female] %>
+    <%= f.label :gender, User.genders_i18n[:female] %>
   </div>
 
   <div class="field">
     <%= f.label '年齢' %><br />
-    <%= f.number_field :name, autofocus: true, min:0, max:100 %>
+    <%= f.number_field :age, autofocus: true, min:0, max:100 %>
   </div>
 
   <div class="field">

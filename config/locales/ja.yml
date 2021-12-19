@@ -20,14 +20,12 @@ ja:
     attributes:
       user:
         current_password: "現在のパスワード"
-        name: 名前
+        name: "名前"
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動的にログイン"
-        unknown: '不明'
-        male: '男性'
-        female: '女性'
+        genders: '性別'
     models:
       user: "ユーザ"
   devise:
@@ -87,3 +85,9 @@ ja:
     unlocks:
       new:
         resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
+  enums:
+    user:
+      gender:
+        unknown: '不明'
+        male: '男性'
+        female: '女性'
