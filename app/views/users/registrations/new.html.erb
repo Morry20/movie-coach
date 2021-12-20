@@ -1,6 +1,6 @@
 <div class="row m-2">
   <span class="h2 bg-light col-2 text-center">新規登録</span>
-  <p class="col-9">※パスワード以外、受講するコーチに公表されます</p>
+  <p class="col-9">※パスワードとメールアドレス以外、受講するコーチに公表されます</p>
 </div>
 
 
@@ -8,7 +8,7 @@
   <%= render "users/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label 'メールアドレス' %><br />
+    <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
 
@@ -26,17 +26,17 @@
   </div>
 
   <div class="field">
-    <%= f.label '名前' %><br />
+    <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label 'プロフィール画像' %><br />
+    <%= f.label :image %><br />
     <%= f.attachment_field :image, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label '性別' %><br />
+    <%= f.label :gender %><br />
     <%= f.radio_button :gender, User.genders.key(1) %>
     <%= f.label :gender, User.genders_i18n[:male] %>
     <%= f.radio_button :gender, User.genders.key(2) %>
@@ -44,17 +44,17 @@
   </div>
 
   <div class="field">
-    <%= f.label '年齢' %><br />
+    <%= f.label :age %><br />
     <%= f.number_field :age, autofocus: true, min:0, max:100 %>
   </div>
 
   <div class="field">
-    <%= f.label 'スポーツ' %><br />
+    <%= f.label :sport %><br />
     <%= f.collection_select :sport_id, Sport.all, :id, :name %>
   </div>
 
   <div class="field">
-    <%= f.label '自己紹介（スポーツの経歴やレベル、どのように習いたいかor教えたいか等。）' %><br />
+    <%= f.label :introduction %><br />
     <%= f.text_area :introduction, autofocus: true %>
   </div>
 

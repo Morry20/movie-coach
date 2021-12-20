@@ -4,13 +4,13 @@
     <table class="table">
       <thead>
         <tr>
-          <th>スポーツ一覧</th>
+          <th><%= link_to 'スポーツ一覧', sports_index_path %></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody><% @sports.each do |sport| %><%# リンクを張る %>
         <tr>
-          <td>sports</td>
-        </tr>
+          <td><%= sport.name %></td>
+        </tr><% end %>
       </tbody>
     </table>
   </div>

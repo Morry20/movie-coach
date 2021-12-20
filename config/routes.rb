@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'users/show'
   get 'sports/index'
 
   root to: 'homes#top'
@@ -13,5 +14,10 @@ Rails.application.routes.draw do
     get "sign_in", :to => "users/sessions#new"
     get "sign_out", :to => "users/sessions#destroy"
   end
+
+  get "users/show" => "users#show"
+
+  get 'search' => 'sports#search'
+
 
 end

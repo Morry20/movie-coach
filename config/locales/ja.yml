@@ -25,8 +25,13 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動的にログイン"
-        genders: '性別'
+        gender: '性別'
+        age: '年齢'
+        introduction: '自己紹介（スポーツの経歴やレベル、どのように習いたいかor教えたいか等。）'
+        sport: "スポーツ"
+        image: "プロフィール画像"
     models:
+      #sport:
       user: "ユーザ"
   devise:
     confirmations:

@@ -2,6 +2,10 @@ class Sport < ApplicationRecord
 
   attachment :image
 
-  has_one :user
+  has_many :users
+
+  def self.search(keyword)
+    where(["name like?", "%#{keyword}%"])
+  end
 
 end
