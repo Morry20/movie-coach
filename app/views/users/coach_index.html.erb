@@ -1,10 +1,11 @@
 <div class="row m-3">
-  <span class="h3 bg-info col-6">コーチ一覧</span>
+  <span class="h3 bg-light col-3 text-center">コーチ一覧</span>
   <div class="search-form col-5">
-    <%#= form_with url: search_path, method: :get, local: true do |f| %>
-      <%#= f.text_field :keyword, value: @keyword %>
-      <%#= f.submit "検索" %>
-    <%# end %>
+    <%= form_with url: users_search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :keyword, value: @keyword %>
+      <%= f.hidden_field :sport_id, value: @sport_id  %>
+      <%= f.submit "検索" %>
+    <% end %>
   </div>
 </div>
 
@@ -16,11 +17,10 @@
     <table class="table">
       <tbody>
         <tr><th class="table-info">名前</th><td><%= coach.name %></td></tr>
-        <tr><th class="table-info">性別</th><td><%= coach.gender_i18n %></td></tr>
         <tr><th class="table-info">年齢</th><td><%= coach.age %>歳</td></tr>
         <tr><th class="table-info">スポーツ</th><td><%= coach.sport.name %></td></tr>
         <tr><th class="table-info">自己紹介</th><td><%= coach.introduction %></td></tr>
-        <tr><th class="table-info">ユーザーステータス</th>
+        <tr><th class="table-info">ステータス</th>
               <td>
                 <% if coach.is_deleted == true %>
                   <span class="text-secondary">退会</span>

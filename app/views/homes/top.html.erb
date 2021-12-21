@@ -9,7 +9,7 @@
       </thead>
       <tbody><% @sports.each do |sport| %><%# リンクを張る %>
         <tr>
-          <td><%= sport.name %></td>
+          <td><%= link_to sport.name, users_coach_index_path(sport_id: sport.id) %></td>
         </tr><% end %>
       </tbody>
     </table>

@@ -18,4 +18,8 @@ class User < ApplicationRecord
 
   enum gender: {unknown:0,  male: 1, female: 2 }
 
+  def self.search(keyword)
+    User.joins(:sport).where(["users.name like? OR sports.name like? OR introduction like?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
+  end
+
 end

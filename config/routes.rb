@@ -17,11 +17,13 @@ Rails.application.routes.draw do
 
   get "users/show" => "users#show"
 
-  get 'search' => 'sports#search'
+  get 'sports/search' => 'sports#search'
 
   resources :users , only:[:index]
-  
-  get 'users/coach_index' => 'users#coach_index'
+
+  get 'users/coach_index/:sport_id' => 'users#coach_index', as: :users_coach_index
+
+  get 'users/search' => 'users#search'
 
 
 end
