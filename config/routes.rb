@@ -19,5 +19,9 @@ Rails.application.routes.draw do
 
   get 'search' => 'sports#search'
 
+  resources :users , only:[:index]
+  
+  get 'users/coach_index' => 'users#coach_index'
+
 
 end

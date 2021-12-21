@@ -1,0 +1,18 @@
+<div class="row m-3">
+  <span class="h3 bg-cyan col-6">コーチ</span>
+  <div class="search-form col-5">
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :keyword, value: @keyword %>
+      <%= f.submit "検索" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row m-3">
+  <div><% @sports.each do |sport| %>
+    <ul class="col-3.4 d-inline-block list-inline center-block m-2">
+      <li><%= attachment_image_tag(sport, :image , :fill, 250, 250, format: 'jpeg') %></li><%# リンクを付与　%>
+      <li><%= sport.name %></li>
+    </ul><% end %><%#= paginate @sports %>
+  </div>
+</div>

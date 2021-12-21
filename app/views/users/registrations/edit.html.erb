@@ -1,11 +1,15 @@
-<h2>会員情報編集 <%= resource_name.to_s.humanize %></h2>
+<% if current_user.is_coach == false %>
+  <h2>会員情報編集</h2>
+<% else %>
+  <h2>コーチ情報編集</h2>
+<% end %>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label '名前' %><br />
-    <%= f.text_field :name, autofocus: true %>
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -13,7 +17,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password %> <i>(変更したくない場合は空欄にしてください。)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br />
@@ -26,13 +30,54 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.attachment_field :image, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.radio_button :gender, User.genders.key(1) %>
+    <%= f.label :gender, User.genders_i18n[:male] %>
+    <%= f.radio_button :gender, User.genders.key(2) %>
+    <%= f.label :gender, User.genders_i18n[:female] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :age %><br />
+    <%= f.number_field :age, autofocus: true, min:0, max:100 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sport %><br />
+    <%= f.collection_select :sport_id, Sport.all, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :introduction %><br />
+    <%= f.text_area :introduction, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'ユーザータイプ' %><br />
+    <%= f.radio_button :is_coach, false %>
+    <%= f.label :is_coach, "受講者", {value: false, style: "display: inline-block;"} %>
+    <%= f.radio_button :is_coach, true %>
+    <%= f.label :is_coach, "コーチ", {value: true, style: "display: inline-block;"} %>
+  </div>
+
   <div class="actions">
-    <%= f.submit "情報更新" %>
+    <%= f.submit "情報更新",class:"btn btn-success btn-lg" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h4 class="mt-5">退会</h4>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p><%= button_to "退会する", registration_path(resource_name), data: { confirm: "本当に退会しますか?" }, method: :delete, class:"btn btn-danger"%></p>
 
-<%= link_to "Back", :back %>
+<%= link_to "戻る", :back %>

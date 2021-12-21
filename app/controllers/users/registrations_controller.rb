@@ -60,16 +60,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+  before_action :configure_permitted_parameters
+
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
-
 
   protected
 
 
   def after_update_path_for(resource)
     users_show_path(resource)
+  end
+
+
+
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys:[:name, :sport_id, :image, :gender, :age, :introduction, :is_coach])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :sport_id, :image, :gender, :age, :introduction, :is_coach])
   end
 
 end
