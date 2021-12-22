@@ -1,18 +1,42 @@
 <div class="row m-3">
-  <span class="h3 bg-cyan col-6">コーチ</span>
+  <span class="h3 bg-light col-3 text-center">仮コーチング中会員一覧</span>
   <div class="search-form col-5">
-    <%= form_with url: search_path, method: :get, local: true do |f| %>
+    <%= form_with url: users_search_path, method: :get, local: true do |f| %>
       <%= f.text_field :keyword, value: @keyword %>
+      <%#= f.hidden_field マッチングしているかどうか、いるかわからないが  %>
       <%= f.submit "検索" %>
     <% end %>
   </div>
 </div>
 
 <div class="row m-3">
-  <div><% @sports.each do |sport| %>
-    <ul class="col-3.4 d-inline-block list-inline center-block m-2">
-      <li><%= attachment_image_tag(sport, :image , :fill, 250, 250, format: 'jpeg') %></li><%# リンクを付与　%>
-      <li><%= sport.name %></li>
-    </ul><% end %><%#= paginate @sports %>
+  <div class="col-12">
+    <table class="table">
+      <thead class="table-success">
+        <tr>
+          <th>会員画像</th>
+          <th>会員氏名</th>
+          <th>性別</th>
+          <th>年齢</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <tbody><% @users.each do |user| %>
+        <tr>
+          <td><%= link_to attachment_image_tag(user, :image , :fill, 100, 100, format: 'jpeg'), user_path(user.id) %></td>
+          <td><%= user.name %></td>
+          <td><%= user.gender %></td>
+          <td><%= user.age %></td>
+          <td>
+            <% if user.is_deleted == true %>
+              <span class="text-secondary">退会</span>
+            <% elsif user.is_deleted == false %>
+              <span class="text-success">有効</span>
+            <% end %>
+          </td>
+        </tr><% end %>
+      </tbody>
+    </table>
   </div>
 </div>
+

@@ -1,0 +1,28 @@
+<div class="row m-2">
+  <span class="h2 bg-light text-center"><%= User.find(params[:coach_id]).name %>コーチへコーチング申請</span>
+</div>
+
+
+<%= form_with model: @matching, url: matchings_path(method: :create), local:true do |f| %>
+
+  <div class="field">
+    <%= f.label '目標' %><br />
+    <%= f.text_area :goal, size: "120x7" %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'どのように教えてもらいたいか' %><br />
+    <%= f.text_area :how, size: "120x7" %>
+  </div>
+
+  <div class="field">
+    <%= f.label '何か一言' %><br />
+    <%= f.text_area :comment, size: "120x7" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "コーチングを申請する", class:"btn btn-warning btn-lg" %>
+  </div>
+
+<% end %>
+

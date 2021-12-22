@@ -1,7 +1,7 @@
 <div class="row m-3">
   <span class="h3 bg-light col-3 text-center">コーチ一覧</span>
   <div class="search-form col-5">
-    <%= form_with url: users_search_path, method: :get, local: true do |f| %>
+    <%= form_with url: users_coach_search_path, method: :get, local: true do |f| %>
       <%= f.text_field :keyword, value: @keyword %>
       <%= f.hidden_field :sport_id, value: @sport_id  %>
       <%= f.submit "検索" %>
@@ -11,7 +11,7 @@
 
 <div class="row m-3"><% @coaches.each do |coach| %>
   <div class="col-3">
-    <%= attachment_image_tag(coach, :image , :fill, 250, 250, format: 'jpeg') %>
+    <%= link_to attachment_image_tag(coach, :image , :fill, 250, 250, format: 'jpeg'), user_path(coach.id) %>
   </div>
   <div class="col-3">
     <table class="table">
