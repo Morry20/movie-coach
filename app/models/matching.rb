@@ -6,6 +6,6 @@ class Matching < ApplicationRecord
 
   belongs_to :user
 
-  enum approval: {checking:0,  approved: 1, impossible: 2}
+  enum approval: {checking: 0,  approved: 1, impossible: 2}
 
 end

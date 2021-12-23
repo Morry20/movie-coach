@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   resources :users, only:[:index,:show]
 
-  resources :matchings, only:[:index, :new, :create, :show]
+  resources :matchings, only:[:index, :new, :create, :show, :update]
 
 
 end

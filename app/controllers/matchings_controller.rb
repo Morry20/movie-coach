@@ -18,7 +18,11 @@ class MatchingsController < ApplicationController
     @matching = Matching.find(params[:id])
   end
 
-
+  def update
+    matching= Matching.find(params[:id])
+    matching.update(matching_params)
+    redirect_to matchings_path
+  end
 
   private
 

@@ -100,4 +100,4 @@ ja:
       approval:
         checking: '確認中'
         approved: '承認済み'
-        impossible: '不可'
+        impossible: '承認不可'
