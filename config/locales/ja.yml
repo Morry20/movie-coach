@@ -96,3 +96,8 @@ ja:
         unknown: '不明'
         male: '男性'
         female: '女性'
+    matching:
+      approval:
+        checking: '確認中'
+        approved: '承認済み'
+        impossible: '不可'

@@ -24,5 +24,9 @@
     <%= f.submit "コーチングを申請する", class:"btn btn-warning btn-lg" %>
   </div>
 
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <%= f.hidden_field :coach_id, value: params[:coach_id] %>
+
 <% end %>
 
