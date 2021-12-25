@@ -1,5 +1,5 @@
 <div class="row m-3">
-  <span class="h3 bg-light col-3 text-center">仮コーチング中会員一覧</span>
+  <span class="h3 bg-light col-3 text-center">コーチング中会員一覧</span>
   <div class="search-form col-5">
     <%= form_with url: users_search_path, method: :get, local: true do |f| %>
       <%= f.text_field :keyword, value: @keyword %>

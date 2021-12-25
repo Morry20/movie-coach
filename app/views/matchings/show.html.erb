@@ -32,12 +32,12 @@
 
   <% if @matching.approval == "approved" %>
     <span class="h3 bg-success">コーチからの挨拶</span>
+    <h3 class="m-5"><%= @matching.reply %></h3>
+    <h4 class="m-5">申請が承認されたため、動画送信をを<%= User.find(@matching.coach_id).name %>コーチにできます。</h4>
   <% elsif @matching.approval == "impossible" %>
     <span class="h3 bg-danger">コーチからの不可の理由</span>
+    <h3 class="m-5"><%= @matching.reply %></h3>
   <% end %>
-
-
-  <h3 class="m-5"><%= @matching.reply %></h3>
 
 <% elsif current_user.is_coach == true && @matching.approval == "checking" %>
   <span class="h3">申請を受理する場合は挨拶を、不可の場合は理由を下に入力してください。</span>

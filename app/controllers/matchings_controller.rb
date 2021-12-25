@@ -1,7 +1,8 @@
 class MatchingsController < ApplicationController
 
   def index
-    @matchings = Matching.all
+    @matchings = Matching.where(user_id: current_user.id)
+                 .or(Matching.where(coach_id: current_user.id))
   end
 
   def new

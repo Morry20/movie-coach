@@ -1,5 +1,5 @@
 <div class="row m-2">
-  <span class="h2 bg-light text-center">コーチング一覧</span>
+  <span class="h2 bg-light text-center">コーチング申請一覧</span>
 </div>
 
 <div class="row m-3">
@@ -26,7 +26,7 @@
               <% else %>
                 <%= User.find(matching.user_id).name %>さん
               <% end %></td>
-          <td><span class="text-secondary"><%= matching.approval_i18n %></span></td>
+          <td class="text-secondary"><%= matching.approval_i18n %></td>
         </tr><% end %>
       </tbody>
     </table>

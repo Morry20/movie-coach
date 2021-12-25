@@ -28,5 +28,10 @@ Rails.application.routes.draw do
 
   resources :matchings, only:[:index, :new, :create, :show, :update]
 
+  get 'movies/complete' => 'movies#complete'
+
+  resources :movies, only:[:new, :create]
+
+
 
 end
