@@ -20,30 +20,33 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
-
             <% if user_signed_in? && current_user.is_coach == false %>
               <strong><%= current_user.name %></strong>.
-              <li class="nav-item">
-                <%= link_to 'スポーツ一覧', sports_index_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to '動画送信', new_movie_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
-              </li>
-              <li class="nav-item">
-                <%#= link_to 'コーチング履歴', coachings_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'プロフィール変更', edit_user_registration_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "ログアウト", sign_out_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to attachment_image_tag(current_user, :image , :fill, 75, 75, format: 'jpeg'), user_my_page_path, class: 'nav-link ml-2' %>
-              </li>
+              <ul class="navbar-nav ml-auto mt-3">
+                <li class="nav-item">
+                  <%= link_to 'スポーツ一覧', sports_index_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '動画送信', new_movie_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
+                </li>
+                <li class="nav-item">
+                  <%#= link_to 'コーチング履歴', coachings_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'プロフィール変更', edit_user_registration_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", sign_out_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to attachment_image_tag(current_user, :image , :fill, 75, 75, format: 'jpeg'), user_my_page_path, class: 'nav-link ml-2' %>
+                </li>
+              </ul>
+
 
             <% elsif user_signed_in? && current_user.is_coach == true %>
               <strong><%= current_user.name %></strong>.
+            <ul class="navbar-nav ml-auto mt-3">
               <li class="nav-item">
                 <%= link_to 'スポーツ一覧', sports_index_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
               </li>
@@ -62,7 +65,9 @@
               <li class="nav-item">
                 <%= link_to attachment_image_tag(current_user, :image , :fill, 75, 75, format: 'jpeg'), user_my_page_path, class: 'nav-link ml-2' %>
               </li>
+            </ul>
             <% else %>
+            <ul class="navbar-nav ml-auto mt-3">
               <li class="nav-item">
                 <%#= link_to '商品一覧', admin_items_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
               </li>
@@ -78,9 +83,8 @@
               <li class="nav-item">
                 <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark btn btn-outline-secondary ml-2' %>
               </li>
-            <% end %>
-
             </ul>
+            <% end %>
           </div>
         </div>
       </nav>

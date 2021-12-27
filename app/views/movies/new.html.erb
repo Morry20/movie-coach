@@ -15,6 +15,7 @@
 
   </div>
   <p class>教えて欲しいこと</p><%= f.text_area :request, size: '120x10' %> <br>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.submit '動画送信',class:"btn btn-primary"%>
 <% end %>
 

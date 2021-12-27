@@ -77,7 +77,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys:[:name, :sport_id, :image, :gender, :age, :introduction, :is_coach])
+    devise_parameter_sanitizer.permit(:sign_up, keys:[:name, :sport_id, :image, :gender, :age, :introduction, :is_coach, :matching])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :sport_id, :image, :gender, :age, :introduction, :is_coach])
   end
 

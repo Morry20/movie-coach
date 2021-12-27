@@ -1,0 +1,55 @@
+<% if current_user.is_coach == false %>
+  <div class="row m-2">
+    <span class="h2 bg-light text-center col-3">コーチング</span>
+    <span class="text-center col-8">動画送信日<%= @movie.created_at %></span>
+  </div>
+
+  <div class="row">
+
+    <div class="col-9">
+      <span class="h3 bg-light"><%= @movie.user.name %>さんの動画</span><br>
+      <% if @movie.movie.attached? %>
+        <video src="<%= rails_blob_path(@movie.movie) %>" type="video/mp4" controls ,class="m-3"></video>
+      <% end %><br>
+      <span class="h3 bg-light">教えて欲しいこと</span><br>
+      <p class="m-3"><%= @movie.request %></p>
+    </div>
+
+    <div class="col-3"></div>
+
+  </div>
+
+<% else %>
+
+  <div class="row m-2">
+    <span class="h2 bg-light text-center col-3">コーチング</span>
+    <span class="text-center col-8">動画受信日<%= @movie.created_at %></span>
+  </div>
+
+  <div class="row">
+    <table class="table col-12">
+      <thead>
+        <tr>
+          <th>動画受信日</th>
+          <th>受信内容</th>
+          <th>会員</th>
+          <th>コーチングの有無</th>
+        </tr>
+      </thead>
+      <tbody><% @movies.each do |movie| %>
+        <tr>
+          <td><%= link_to movie.created_at, movie_path(movie.id) %></td>
+          <td><%= movie.request %></td>
+          <td><%= User.find(movie.matching.user_id).name %></td>
+          <td><% if !!movie.coaching %>
+                <p class="text-success">有り,詳細は動画送信日より</p>
+              <% else %>
+                無し,コーチが確認中です。
+              <% end %>
+          </td>
+        </tr><% end %>
+      </tbody>
+    </table>
+  </div>
+
+<% end %>

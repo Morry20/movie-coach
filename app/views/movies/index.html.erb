@@ -1,0 +1,64 @@
+<% if current_user.is_coach == false %>
+  <div class="row m-2">
+    <span class="h2 bg-light text-center">送信動画一覧</span>
+  </div>
+
+  <div class="row">
+    <table class="table col-12">
+      <thead>
+        <tr>
+          <th>動画送信日</th>
+          <th>送信内容</th>
+          <th>コーチ</th>
+          <th>コーチングの有無</th>
+        </tr>
+      </thead>
+      <tbody><% @movies.each do |movie| %>
+        <tr>
+          <td><%= link_to movie.created_at, movie_path(movie.id) %></td>
+          <td><%= movie.request %></td>
+          <td><%= User.find(movie.matching.coach_id).name %></td>
+          <td><% if !!movie.coaching %>
+                <p class="text-success">有り,詳細は動画送信日より</p>
+              <% else %>
+                無し,コーチが確認中です。
+              <% end %>
+          </td>
+        </tr><% end %>
+      </tbody>
+    </table>
+  </div>
+
+<% else %>
+
+  <div class="row m-2">
+    <span class="h2 bg-light text-center">受信動画一覧</span>
+  </div>
+
+  <div class="row">
+    <table class="table col-12">
+      <thead>
+        <tr>
+          <th>動画受信日</th>
+          <th>受信内容</th>
+          <th>会員</th>
+          <th>コーチングの有無</th>
+        </tr>
+      </thead>
+      <tbody><% @movies.each do |movie| %>
+        <tr>
+          <td><%= link_to movie.created_at, movie_path(movie.id) %></td>
+          <td><%= movie.request %></td>
+          <td><%= User.find(movie.matching.user_id).name %></td>
+          <td><% if !!movie.coaching %>
+                <p class="text-success">有り,詳細は動画送信日より</p>
+              <% else %>
+                無し,コーチが確認中です。
+              <% end %>
+          </td>
+        </tr><% end %>
+      </tbody>
+    </table>
+  </div>
+
+<% end %>
