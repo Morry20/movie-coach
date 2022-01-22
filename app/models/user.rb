@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   has_many :matchings, dependent: :destroy
 
-  #has_many :messages, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   has_many :movies, dependent: :destroy
 

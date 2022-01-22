@@ -11,8 +11,12 @@
 // about supported directives.
 //
 //= require jquery3
+//= require jquery
+//= require jquery.raty.js
 //= require popper
 //= require bootstrap-sprockets
+//= require chartkick
+//= require Chart.bundle
 
 //= require rails-ujs
 //= require activestorage

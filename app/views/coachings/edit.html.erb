@@ -1,0 +1,28 @@
+<%= form_with(model: @coaching, local: true) do |c| %>
+
+  <div id="evaluate_stars">
+    <%= c.label :evaluation,'評価' %>
+  </div>
+
+  <h4>総評</h4>
+  <%= c.text_area :comment, size: "95x10" %>
+
+  <%= c.hidden_field :movie_id, :value => @coaching.movie.id %>
+  <%= c.hidden_field :id, :value => @coaching.movie.id %>
+
+  <div class="actions">
+    <%= c.submit "編集する", class: "btn btn-light" %>
+  </div>
+
+  <script>
+    $('#evaluate_stars').raty({
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      scoreName: 'coaching[evaluation]',
+      half: true,
+    });
+  </script>
+
+<% end %>
+

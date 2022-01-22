@@ -1,4 +1,6 @@
 class SportsController < ApplicationController
+  before_action :authenticate_user!,except: [:index, :search]
+
   def index
     @sports = Sport.all
   end

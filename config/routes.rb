@@ -30,7 +30,13 @@ Rails.application.routes.draw do
 
   get 'movies/complete' => 'movies#complete'
 
-  resources :movies, only:[:new, :create,:index, :show, :edit, :update]
+  resources :movies, only:[:new, :create, :index, :show, :edit, :update]
+
+  resources :messages, only:[:create]
+
+  resources :coachings, only:[:create, :edit, :update]
+
+  resources :coach_evaluations, only:[:create]
 
 
 end

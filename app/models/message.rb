@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
   belongs_to :user
   
-  belongs_to :matching
+  belongs_to :movie
 end

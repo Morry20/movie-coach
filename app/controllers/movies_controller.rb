@@ -16,22 +16,22 @@ class MoviesController < ApplicationController
   end
 
   def index
-
     matchings = Matching.where(coach_id: current_user.id).or(Matching.where(user_id: current_user.id))
     @movies = Movie.where(matching_id: matchings.ids)
-    #binding.pry
-    #@movies = Movie.where(matching.coach_id == current_user.id)
-    #@movies = Movie.where(Matching.where(coach_id: current_user.id))
   end
 
   def show
     @movie = Movie.find(params[:id])
-    #@movie.coaching.all
+    @messages = @movie.messages
+    @message = Message.new
+    @coaching = Coaching.new
   end
 
   def edit
   end
-
+  
+  
+  private
   def movie_params
     params.require(:movie).permit(:matching_id, :movie, :request, :user_id)
   end

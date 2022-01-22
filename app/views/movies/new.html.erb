@@ -6,7 +6,7 @@
 <%= form_with model: @movie, local: true do |f| %>
   <div class="row m-3">
     <p class="col-2">送信する動画</p>
-    <%= f.file_field :movie,class:"btn col-5" %>
+    <%= f.file_field :movie, class:"btn col-5" %>
     <div class="col-4">
       <% current_user.matchings.where(approval: 'approved').each do |matching| %>
         <select name="movie[matching_id]" id="movie_matching_id"><option value="<%= matching.id %>"><%= User.find(matching.coach_id).name %></option></select>コーチへ

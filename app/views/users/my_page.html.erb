@@ -33,15 +33,19 @@
   </div>
 
   <div class="row">
-    <div class="col-5 text-center">
-      <%#= link_to '受講コーチング履歴', coaching_index_path, class:"btn btn-success btn-lg" %>受講コーチング履歴ボタン作成
-    </btn>
+    <div class="col-5">
+      <%= link_to '受講コーチング履歴', movies_path, class:"btn btn-light btn-lg" %><br>
+      <%= link_to 'コーチング申請一覧', matchings_path, class:"btn btn-warning btn-lg mt-3" %>
+    </div>
   </div>
 
-  <div class="row">
-    <div class="col-5 text-center">
-      <%#= link_to 'コーチング申請一覧', matching_index_path, class:"btn btn-success btn-lg" %>コーチング申請一覧ボタン作成
-    </btn>
+  <div class="row mt-3">
+    <div class="col-3 h3">成長度合い</div>
+    <div class="col-4">(目標を最大の星５とした際のコーチング取得星数)</div>
+    <div class="col-4">過去３か月間の集計です</div>
+    <div class="col-12">
+      <%= line_chart @data, id: "line-chart", width: "800px", height: "500px" %>
+    </div>
   </div>
 
 <% else %>
@@ -80,22 +84,52 @@
   </div>
 
   <div class="row">
-    <div class="col-5 text-center">
-      <%#= link_to 'コーチング中受講者一覧', users_index_path, class:"btn btn-success btn-lg" %>コーチング中受講者一覧ボタン作成
-    </btn>
+    <div class="col-12">
+      <%= link_to 'コーチング中受講者一覧', users_path, class:"btn btn-success btn-lg" %><br>
+      <%= link_to 'コーチング一覧', movies_path, class:"btn btn-light btn-lg mt-3" %><br>
+      <%= link_to 'コーチング申請一覧', matchings_path, class:"btn btn-warning btn-lg mt-3" %><br>
+    </div>
   </div>
 
-  <div class="row">
-    <div class="col-5 text-center">
-      <%#= link_to 'コーチング一覧', coaching_index_path, class:"btn btn-warning btn-lg" %>コーチング一覧ボタン作成
-    </btn>
+
+  <div class="row mt-3">
+    <h3 class="col-12 text-center">受講者による評価</h3>
+    <% if @coach_evaluations.present? %>
+      <% @coach_evaluations.each do |c| %>
+        <table class="table col-6">
+          <tbody>
+            <tr>
+              <td><%= c.title %></td>
+              <td class="coach-evaluation" data-score="<%= c.evaluation %>"></td>
+              <td><%= c.reason %></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table col-6">
+          <tbody>
+            <tr><th class="table-info">性別</th><td><%= c.matching.user.gender_i18n %></td></tr>
+            <tr><th class="table-info">年齢</th><td><%= c.matching.user.age %>歳</td></tr>
+            <tr><th class="table-info">自己紹介</th><td><%= c.matching.user.introduction %></td></tr>
+          </tbody>
+        </table>
+      <% end %>
+    <% else %>
+      <h3>評価はまだありません</h3>
+    <% end %>
+    <script>
+      $('.coach-evaluation').raty({
+        readOnly: true,
+        score: function() {
+          return $(this).attr('data-score');
+        },
+        path: '/assets/',
+        half: true,
+      });
+    </script>
   </div>
 
-  <div class="row">
-    <div class="col-5 text-center">
-      <%#= link_to 'コーチング申請一覧', matching_index_path, class:"btn btn-info btn-lg" %>コーチング申請一覧ボタン作成
-    </btn>
-  </div>
+
 
 
 <% end %>

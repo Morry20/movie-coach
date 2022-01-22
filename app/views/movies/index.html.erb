@@ -51,7 +51,7 @@
           <td><%= movie.request %></td>
           <td><%= User.find(movie.matching.user_id).name %></td>
           <td><% if !!movie.coaching %>
-                <p class="text-success">有り,詳細は動画送信日より</p>
+                有り,詳細は動画送信日より
               <% else %>
                 無し,コーチが確認中です。
               <% end %>

@@ -1,21 +1,65 @@
 <% if current_user.is_coach == false %>
   <div class="row m-2">
     <span class="h2 bg-light text-center col-3">コーチング</span>
-    <span class="text-center col-8">動画送信日<%= @movie.created_at %></span>
+    <span class="col-8 h4">動画送信日<%= @movie.created_at %></span>
   </div>
 
   <div class="row">
 
-    <div class="col-9">
+    <div class="col-8">
+
       <span class="h3 bg-light"><%= @movie.user.name %>さんの動画</span><br>
       <% if @movie.movie.attached? %>
-        <video src="<%= rails_blob_path(@movie.movie) %>" type="video/mp4" controls ,class="m-3"></video>
+        <video src="<%= rails_blob_path(@movie.movie) %>" type="video/mp4" controls class="col-12"></video>
       <% end %><br>
+
       <span class="h3 bg-light">教えて欲しいこと</span><br>
-      <p class="m-3"><%= @movie.request %></p>
+      <p class="m-3"><%= @movie.request %></p><br>
+
+      <h4>コーチ</h4>
+      <p class="ml-4"><%= User.find(@movie.matching.coach_id).name %>コーチ</p><br>
+
+      <% if @movie.coaching.present? %>
+        <h4>評価</h4>
+        <p class="ml-4 coaching-evaluation" data-score="<%= @movie.coaching.evaluation %>"></p>
+        <h4>総評</h4>
+        <p class="ml-4"><%= @movie.coaching.comment %></p>
+        <script>
+          $('.coaching-evaluation').raty({
+            readOnly: true,
+            score: function() {
+              return $(this).attr('data-score');
+            },
+            path: '/assets/'
+          });
+        </script>
+      <% else %>
+        <h4>評価</h4>
+        <p class="ml-4">コーチが確認中です。</p><br>
+        <h4>総評</h4>
+        <p class="ml-4">コーチが確認中です。</p>
+      <% end %>
     </div>
 
-    <div class="col-3"></div>
+    <div class="col-4">
+      <% if @messages.present? %>
+        <% @messages.each do |m| %>
+          <strong><%= m.message %></strong>
+          <small>by <strong><a href="/users/<%= m.user_id %>"><%= m.user.name %>さん</a></strong></small>
+          <hr>
+        <% end %>
+      <% else %>
+        <h3 class="text-center">メッセージはまだありません</h3>
+      <% end %>
+
+      <%= form_with model: @message, local: true do |f| %>
+        <%= f.text_area :message, :placeholder => "メッセージを入力して下さい",size: '45x10' %>
+        <%= f.hidden_field :movie_id, :value => @movie_id %>
+
+        <br>
+        <%= f.submit "投稿する", class: "btn btn-light" %>
+      <% end %>
+    </div>
 
   </div>
 
@@ -23,33 +67,90 @@
 
   <div class="row m-2">
     <span class="h2 bg-light text-center col-3">コーチング</span>
-    <span class="text-center col-8">動画受信日<%= @movie.created_at %></span>
+    <span class="h4 col-8">動画受信日<%= @movie.created_at %></span>
   </div>
 
   <div class="row">
-    <table class="table col-12">
-      <thead>
-        <tr>
-          <th>動画受信日</th>
-          <th>受信内容</th>
-          <th>会員</th>
-          <th>コーチングの有無</th>
-        </tr>
-      </thead>
-      <tbody><% @movies.each do |movie| %>
-        <tr>
-          <td><%= link_to movie.created_at, movie_path(movie.id) %></td>
-          <td><%= movie.request %></td>
-          <td><%= User.find(movie.matching.user_id).name %></td>
-          <td><% if !!movie.coaching %>
-                <p class="text-success">有り,詳細は動画送信日より</p>
-              <% else %>
-                無し,コーチが確認中です。
-              <% end %>
-          </td>
-        </tr><% end %>
-      </tbody>
-    </table>
+
+    <div class="col-8">
+      <span class="h3 bg-light"><%= @movie.user.name %>さんの動画</span><br>
+      <% if @movie.movie.attached? %>
+        <video src="<%= rails_blob_path(@movie.movie) %>" type="video/mp4" controls  class="col-12"></video>
+      <% end %><br>
+
+      <span class="h3 bg-light">教えて欲しいこと</span><br>
+      <p class="m-3"><%= @movie.request %></p>
+
+      <% if @movie.coaching.present? %>
+
+        <h4>評価</h4>
+        <p class="ml-4 coaching-evaluation" data-score="<%= @movie.coaching.evaluation %>"></p>
+        <h4>総評</h4>
+        <p class="ml-4"><%= @movie.coaching.comment %></p>
+        <%= link_to '編集する', edit_coaching_path(@movie.coaching.id),class: "btn btn-primary" %>
+        <script>
+          $('.coaching-evaluation').raty({
+            readOnly: true,
+            score: function() {
+              return $(this).attr('data-score');
+            },
+            path: '/assets/',
+            half: true,
+          });
+        </script>
+
+      <% else %>
+
+        <%= form_with(model: @coaching, local: true) do |c| %>
+
+          <div id="evaluate_stars">
+            <%= c.label :evaluation,'評価' %>
+          </div>
+
+          <h4>総評</h4>
+          <%= c.text_area :comment, size: "95x10" %>
+
+          <%= c.hidden_field :movie_id, :value => @movie.id %>
+          <%= c.hidden_field :id, :value => @movie.id %>
+
+          <div class="actions">
+            <%= c.submit "投稿する", class: "btn btn-light" %>
+          </div>
+
+          <script>
+            $('#evaluate_stars').raty({
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              scoreName: 'coaching[evaluation]',
+              half: true,
+            });
+          </script>
+
+        <% end %>
+
+      <% end %>
+    </div>
+
+    <div class="col-4">
+      <% if @messages.present? %>
+        <% @messages.each do |m| %>
+          <strong><%= m.message %></strong>
+          <small>by <strong><a href="/users/<%= m.user_id %>"><%= m.user.name %>さん</a></strong></small>
+          <hr>
+        <% end %>
+      <% else %>
+        <h3 class="text-center">メッセージはまだありません</h3>
+      <% end %>
+
+      <%= form_with model: @message, local: true do |f| %>
+        <%= f.text_area :message, :placeholder => "メッセージを入力して下さい" ,size: '45x10' %>
+        <%= f.hidden_field :movie_id, :value => @movie.id %>
+        <%= f.hidden_field :id, :value => @movie.id %>
+        <br>
+        <%= f.submit "投稿する", class:"btn btn-light" %>
+      <% end %>
+    </div>
   </div>
 
 <% end %>

@@ -77,3 +77,8 @@ gem 'devise-i18n-views'
 gem "enum_help"
 
 gem 'pry-byebug', group: :development
+
+gem 'jquery-rails'
+
+gem 'chartkick'
+gem 'groupdate'

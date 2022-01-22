@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!,except: [:coach_index]
+
   def my_page
     @user = current_user
+    @coach_evaluations = Matching.where(coach_id: @user.id).map(&:coach_evaluation).compact
+    @data = @user.movies.joins(:coaching).where("coachings.created_at>#{3.month.ago.strftime('%Y-%m-%d')}").group_by_week('coachings.created_at').average(:evaluation)
+    # @select_month = [3.month.ago.strftime('%Y-%m'),2.month.ago.strftime('%Y-%m'),Date.today.strftime('%Y-%m')]
+
   end
 
   def index
@@ -16,7 +22,6 @@ class UsersController < ApplicationController
   def coach_index
     @coaches = User.where(is_coach: true, sport_id: params[:sport_id])
     @sport_id = params[:sport_id]
-
   end
 
   def coach_search
@@ -28,10 +33,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @coach_evaluations = Matching.where(coach_id: @user.id).map(&:coach_evaluation).compact
+    @coach_evaluation = CoachEvaluation.new
   end
 
-  #def user_params
-    #params.require(:user).permit(:name, :sport_id, :image, :gender, :age, :introduction, :is_coach)
-  #end
 
 end

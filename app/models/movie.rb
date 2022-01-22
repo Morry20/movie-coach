@@ -6,4 +6,7 @@ class Movie < ApplicationRecord
   belongs_to :user
 
   belongs_to :matching
+
+  has_many :messages
+
 end
