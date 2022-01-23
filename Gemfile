@@ -82,3 +82,4 @@ gem 'jquery-rails'
 
 gem 'chartkick'
 gem 'groupdate'
+
