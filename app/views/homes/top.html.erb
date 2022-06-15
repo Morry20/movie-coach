@@ -1,21 +1,21 @@
-<div class="row m-3">
+<div class="row ml-3">
 
-  <div class="col-2">
+  <div class="col-2 mt-3">
     <table class="table">
       <thead>
         <tr>
-          <th><%= link_to 'スポーツ一覧', sports_index_path %></th>
+          <th><%= link_to 'スポーツ一覧', sports_index_path,class:"text-secondary" %></th>
         </tr>
       </thead>
       <tbody><% @sports.each do |sport| %>
         <tr>
-          <td><%= link_to sport.name, users_coach_index_path(sport_id: sport.id) %></td>
+          <td><%= link_to sport.name, users_coach_index_path(sport_id: sport.id),class:"text-secondary" %></td>
         </tr><% end %>
       </tbody>
     </table>
   </div>
 
-  <div class="col-10">
+  <div class="col-9 mt-3 text-center">
     <%= image_tag 'sports.jpg', :size => '898x634' %><br>
 
     当サイトは、コロナ禍で運動不足な方や手軽にしっかりとしたスポーツの技術を身に付けたい方のためのサイトです。<br>

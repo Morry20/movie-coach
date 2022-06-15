@@ -12,7 +12,7 @@
 
 
   <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm">
+    <header class="shadow-sm bg-light">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand p-3" href="/">Movie-Coach</a>
@@ -82,20 +82,11 @@
     </header>
 
     <main class="mb-auto">
-      <div class ="container">
+      <div class ="main-container">
         <%= yield %>
       </div>
 
     </main>
 
-    <footer class="bg-cyan text-white pt-5 pb-4">
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <p></p>
-          </div>
-        </div>
-      </div>
-    </footer>
   </body>
 </html>
