@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Sport.create(image_id: open("./app/assets/images/tennis2.jpg"), name: 'テニス')
-Sport.create(image_id: open("./app/assets/images/golf.jpg"), name: 'ゴルフ')
-Sport.create(image_id: open("./app/assets/images/soccer.jpg"), name: 'サッカー')
-Sport.create(image_id: open("./app/assets/images/baseball.jpg"), name: '野球')
+Sport.create(image: File.open("./app/assets/images/tennis2.jpg"), name: 'テニス')
+Sport.create(image: File.open("./app/assets/images/golf.jpg"), name: 'ゴルフ')
+Sport.create(image: File.open("./app/assets/images/soccer.jpg"), name: 'サッカー')
+Sport.create(image: File.open("./app/assets/images/baseball.jpg"), name: '野球')
