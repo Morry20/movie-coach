@@ -35,6 +35,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @coach_evaluations = Matching.where(coach_id: @user.id).map(&:coach_evaluation).compact
     @coach_evaluation = CoachEvaluation.new
+    @matching = Matching.find_by(user_id: current_user.id, coach_id: @user.id)
   end
 
 

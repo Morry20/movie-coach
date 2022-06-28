@@ -102,34 +102,35 @@
     </script>
   </div>
 
-  <% if Matching.find_by(user_id: current_user.id, coach_id: @user.id).coach_evaluation.nil? %>
-    <% else %>
-    <%= form_with(model: @coach_evaluation, method: :post, local: true) do |form| %>
-
-      <div id="evaluate_stars">
-        <%= form.label :evaluation,'評価' %>
-      </div>
-      <div>
-        <%= form.label :title %>
-        <%= form.text_field :title %>
-      </div>
-      <div>
-        <%= form.label :reason %>
-        <%= form.text_area :reason,size:"100x10" %>
-      </div>
-      <%= form.hidden_field :matching_id, :value => Matching.find_by(user_id: current_user.id, coach_id: @user.id)&.id %>
-
-      <%= form.submit '投稿する', class: "btn btn-primary" %>
+  <% unless @matching.nil? %>
+    <% unless @matching.coach_evaluation.nil? %>
+      <%= form_with(model: @coach_evaluation, method: :post, local: true) do |form| %>
+  
+        <div id="evaluate_stars">
+          <%= form.label :evaluation,'評価' %>
+        </div>
+        <div>
+          <%= form.label :title %>
+          <%= form.text_field :title %>
+        </div>
+        <div>
+          <%= form.label :reason %>
+          <%= form.text_area :reason,size:"100x10" %>
+        </div>
+        <%= form.hidden_field :matching_id, :value => Matching.find_by(user_id: current_user.id, coach_id: @user.id)&.id %>
+  
+        <%= form.submit '投稿する', class: "btn btn-primary" %>
+      <% end %>
+      <script>
+        $('#evaluate_stars').raty({
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'coach_evaluation[evaluation]',
+          half: true,
+        });
+      </script>
     <% end %>
-    <script>
-      $('#evaluate_stars').raty({
-        starOn: "<%= asset_path('star-on.png') %>",
-        starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
-        scoreName: 'coach_evaluation[evaluation]',
-        half: true,
-      });
-    </script>
   <% end %>
 
 <% end %>
