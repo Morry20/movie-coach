@@ -102,7 +102,7 @@
     </script>
   </div>
 
-  <% if Matching.find_by(user_id: current_user.id, coach_id: @user.id).coach_evaluation.present? %>
+  <% if Matching.find_by(user_id: current_user.id, coach_id: @user.id).coach_evaluation.nil? %>
     <% else %>
     <%= form_with(model: @coach_evaluation, method: :post, local: true) do |form| %>
 
