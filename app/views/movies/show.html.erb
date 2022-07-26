@@ -54,7 +54,7 @@
 
       <%= form_with model: @message, local: true do |f| %>
         <%= f.text_area :message, :placeholder => "メッセージを入力して下さい",size: '45x10' %>
-        <%= f.hidden_field :movie_id, :value => @movie_id %>
+        <%= f.hidden_field :movie_id, :value => @movie.id %>
 
         <br>
         <%= f.submit "投稿する", class: "btn btn-light" %>
