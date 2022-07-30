@@ -49,7 +49,7 @@
 ## チャレンジ要素一覧
 <https://docs.google.com/spreadsheets/d/1f5ba4wyrGyv-Ak8ugBC22tURuUdRvgRbqxT7MhC44cs/edit#gid=0>
 ## 開発環境
-- OS：Linux(CentOS)
+- OS：Amazon Linux 2
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
